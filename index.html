@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/css/bootstrap.min.css">
+    <style>
+        html {
+          background: -webkit-linear-gradient(top, #083454 0%, #031726 100%);
+          background: linear-gradient(to bottom, #083454 0%, #031726 100%);
+          height: 100%;
+        }
+
+        body {
+          /* padding: 0 2em 2em; */
+          background: transparent;
+        }
+
+        main {
+          text-align: center;
+          box-sizing: border-box;
+          height: 100%;
+        }
+
+        .settings {
+          text-align: left;
+          -webkit-transition: all .5s;
+          transition: all .5s;
+          padding: 5px;
+        }
+        .settings button {
+          background: transparent;
+          color: #071927;
+        }
+        .settings button:hover, .settings button:focus {
+          color: #fff;
+        }
+        .settings form {
+          display: inline-block;
+          position: relative;
+          opacity: 0;
+          -webkit-transition: opacity .5s;
+          transition: opacity .5s;
+        }
+        .settings label {
+          display: inline-block;
+          padding-right: .5em;
+          font-size: 16px;
+          color: #fff;
+        }
+        .settings input {
+          border: none;
+          border-radius: 2px;
+          padding: 4px;
+          font-size: 16px;
+        }
+
+        .active {
+          background: #071927;
+        }
+        .active button {
+          color: #ccc;
+        }
+        .active button:hover, .active button:focus {
+          color: #fff;
+        }
+        .active form {
+          opacity: 1;
+        }
+        .active input {
+          display: inline-block;
+        }
+
+        svg {
+          max-width: 100%;
+          height: auto;
+          padding: 0 2em 2em;
+        }
+
+        #arm {
+          -webkit-transform-origin: bottom center;
+                  transform-origin: bottom center;
+        }
+        .modal-content {
+          padding: 2rem 2rem 4rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+      <div class="settings">
+        <button id="settingsBtn" class="btn btn-lg">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+
+        <form class="settingsForm">
+          <label for="timeInput">Minutes:</label>
+          <input type="number" id="timeInput" />
+        </form>
+      </div>
+
+      <!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In  -->
+      <svg version="1.1"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+         x="0px" y="0px" width="500.6px" height="500.6px" viewBox="0 0 500.6 500.6" style="enable-background:new 0 0 500.6 500.6;"
+         xml:space="preserve">
+        <style type="text/css">
+          .st0{fill:url(#face_9_);}
+          .st1{fill:url(#SVGID_1_);}
+          .st2{fill:url(#SVGID_2_);}
+          .st3{fill:url(#SVGID_3_);}
+          .st4{opacity:0.15;}
+          .st5{fill:url(#face_10_);}
+          .st6{fill:url(#SVGID_4_);}
+          .st7{fill:url(#SVGID_5_);}
+          .st8{fill:url(#SVGID_6_);}
+        </style>
+
+        <linearGradient id="face_9_" gradientUnits="userSpaceOnUse" x1="82.3502" y1="82.3502" x2="418.226" y2="418.226">
+          <stop  offset="0" style="stop-color:#FFFFFF"/>
+          <stop  offset="1" style="stop-color:#C7C7C7"/>
+        </linearGradient>
+
+        <g id="face">
+          <path id="face-color" class="st0" d="M250.3,487.8c-63.4,0-123.1-24.7-167.9-69.6c-44.9-44.9-69.6-104.5-69.6-167.9
+        S37.5,127.2,82.4,82.4c44.9-44.9,104.5-69.6,167.9-69.6s123.1,24.7,167.9,69.6c44.9,44.9,69.6,104.5,69.6,167.9
+        s-24.7,123.1-69.6,167.9S313.7,487.8,250.3,487.8z"/>
+        </g>
+
+        <polygon id="arm" points="258.7,250.2 241.9,250.2 250.6,26.9 " fill="#242424"/>
+
+        <g id="ring_1_">
+          <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="73.3076" y1="73.3076" x2="427.2681" y2="427.2681">
+            <stop  offset="0" style="stop-color:#737373"/>
+            <stop  offset="1" style="stop-color:#121212"/>
+          </linearGradient>
+          <path class="st1" d="M250.3,500.6c-66.9,0-129.7-26-177-73.3C26,380,0,317.1,0,250.3s26-129.7,73.3-177C120.6,26,183.4,0,250.3,0
+            s129.7,26,177,73.3c47.3,47.3,73.3,110.1,73.3,177s-26,129.7-73.3,177S317.1,500.6,250.3,500.6z M413.5,413.5
+            c43.6-43.6,67.6-101.6,67.6-163.2s-24-119.6-67.6-163.2c-43.6-43.6-101.6-67.6-163.2-67.6s-119.6,24-163.2,67.6
+            c-43.6,43.6-67.6,101.6-67.6,163.2s24,119.6,67.6,163.2c43.6,43.6,101.6,67.6,163.2,67.6S369.9,457.1,413.5,413.5z"/>
+          <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="75.4289" y1="75.4289" x2="425.1463" y2="425.1463">
+            <stop  offset="0" style="stop-color:#2B2B2B"/>
+            <stop  offset="1" style="stop-color:#242424"/>
+          </linearGradient>
+          <path class="st2" d="M497.6,250.3c0,136.6-110.7,247.3-247.3,247.3S3,386.9,3,250.3S113.7,3,250.3,3S497.6,113.7,497.6,250.3z
+             M413.5,413.5c43.6-43.6,67.6-101.6,67.6-163.2s-24-119.6-67.6-163.2c-43.6-43.6-101.6-67.6-163.2-67.6s-119.6,24-163.2,67.6
+            c-43.6,43.6-67.6,101.6-67.6,163.2s24,119.6,67.6,163.2c43.6,43.6,101.6,67.6,163.2,67.6S369.9,457.1,413.5,413.5z"/>
+          <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="84.589" y1="84.589" x2="415.9866" y2="415.9866">
+            <stop  offset="0" style="stop-color:#1A1A1A"/>
+            <stop  offset="1" style="stop-color:#4D4D4D"/>
+          </linearGradient>
+          <path class="st3" d="M250.3,484.6c-62.6,0-121.4-24.4-165.7-68.6C40.3,371.7,16,312.9,16,250.3c0-62.6,24.4-121.4,68.6-165.7
+            S187.7,16,250.3,16c62.6,0,121.4,24.4,165.7,68.6c44.3,44.3,68.6,103.1,68.6,165.7c0,62.6-24.4,121.4-68.6,165.7
+            C371.7,460.2,312.9,484.6,250.3,484.6z M413.5,413.5c43.6-43.6,67.6-101.6,67.6-163.2s-24-119.6-67.6-163.2
+            c-43.6-43.6-101.6-67.6-163.2-67.6s-119.6,24-163.2,67.6c-43.6,43.6-67.6,101.6-67.6,163.2s24,119.6,67.6,163.2
+            c43.6,43.6,101.6,67.6,163.2,67.6S369.9,457.1,413.5,413.5z"/>
+        </g>
+        <g id="shadow_copy">
+          <path id="face-shadow_1_" class="st4" d="M26.5,257.3c0-61.6,24-119.6,67.6-163.2c43.6-43.6,101.6-67.6,163.2-67.6
+            c60,0,116.5,22.7,159.7,64.1c-1.1-1.2-2.3-2.4-3.5-3.5c-43.6-43.6-101.6-67.6-163.2-67.6s-119.6,24-163.2,67.6
+            c-43.6,43.6-67.6,101.6-67.6,163.2s24,119.6,67.6,163.2c1.2,1.2,2.4,2.3,3.5,3.5C49.2,373.8,26.5,317.3,26.5,257.3z"/>
+        </g>
+
+        <circle id="button_1_" cx="250.3" cy="250.3" r="8.4" fill="#242424" />
+      </svg>
+
+      <div>
+        <button id="startBtn" class="btn btn-lg btn-primary">Start</button>
+        <button id="stopBtn" class="btn btn-lg btn-primary">Stop</button>
+        <button id="resetBtn" class="btn btn-lg btn-primary">Reset</button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <!-- <div class="modal-body"> -->
+              <h1>Times Up</h1>
+            <!-- </div> -->
+            <!-- <div class="modal-footer"> -->
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      window.$ = window.jQuery = require('./bower_components/jquery/dist/jquery.js');
+      window.d3 = require('./bower_components/d3/d3.js');
+    </script>
+
+    <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
