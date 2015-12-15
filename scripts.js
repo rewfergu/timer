@@ -1,15 +1,19 @@
+var radians = function(angle) {
+  return angle * (Math.PI / 180);
+};
+
 var arc = d3.svg.arc()
   .innerRadius(0)
   .outerRadius(240)
-  .startAngle(0 * (Math.PI / 180))
-  .endAngle(0 * (Math.PI / 180));
+  .startAngle(radians(0))
+  .endAngle(radians(0));
 
 var timerFace = d3.select('#face');
 
 var pie = timerFace.append('path')
     .attr('d', arc)
     .attr('fill', 'black')
-    .attr('opacity', .15)
+    .attr('opacity', 0.15)
     .attr('transform', 'translate(250.5,250.5)');
 
 var timerHand = d3.select('#arm');
@@ -29,7 +33,7 @@ var path = require('path');
 var message = {
   title: 'Timer Notification',
   body: 'Times Up',
-  icon: path.join(__dirname, 'timer.svg'),
+  icon: path.join(__dirname, 'img/timer-icon.png'),
 };
 
 $('#startBtn').click(function() {
@@ -57,15 +61,18 @@ $('#resetBtn').click(function() {
   pause = false;
   pie.remove();
   angle = 0;
-  arc.endAngle(angle * (Math.PI / 180));
 
+  arc.endAngle(radians(angle));
   pie = timerFace.append('path')
     .attr('d', arc)
     .attr('fill', 'black')
-    .attr('opacity', .15)
+    .attr('opacity', 0.15)
     .attr('transform', 'translate(250.5,250.5)');
 
   timerHand.style({transform: 'rotate(' + angle + 'deg)'});
+
+  $('#startBtn').removeClass('btn-success');
+  $('#stopBtn').removeClass('btn-danger');
 });
 
 $('#settingsBtn').click(function() {
@@ -76,7 +83,7 @@ $('#timeInput').val(minutes);
 $('#timeInput').change(function() {
   minutes = $(this).val();
   block = minutes * seconds * milliseconds;
-})
+});
 
 function animate(time) {
   if (start) {
@@ -86,7 +93,7 @@ function animate(time) {
     pie.remove();
 
     angle = 360 - (360 * percentage);
-    arc.endAngle(angle * (Math.PI / 180));
+    arc.endAngle(radians(angle));
 
     pie = timerFace.append('path')
       .attr('d', arc)
