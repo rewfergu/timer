@@ -36,6 +36,8 @@ var message = {
   icon: path.join(__dirname, 'img/timer-icon.png'),
 };
 
+var alarm = document.getElementById('alarm');
+
 $('#startBtn').click(function() {
   start = true;
   now = Date.now();
@@ -108,6 +110,7 @@ function animate(time) {
       pie.remove();
       $('#modal').modal('show');
       new Notification(message.title, message);
+      alarm.play();
     }
 
   }
